@@ -8,10 +8,12 @@ class World:
         self.rooms = {}
         self.room_grid = []
         self.grid_size = 0
+    
     def load_graph(self, room_graph):
         num_rooms = len(room_graph)
         rooms = [None] * num_rooms
         grid_size = 1
+        
         for i in range(0, num_rooms):
             x = room_graph[i][0][0]
             grid_size = max(grid_size, room_graph[i][0][0], room_graph[i][0][1])
@@ -21,6 +23,7 @@ class World:
         self.grid_size = grid_size
         for i in range(0, grid_size):
             self.room_grid.append([None] * grid_size)
+            
         for room_id in room_graph:
             room = self.rooms[room_id]
             self.room_grid[room.x][room.y] = room
@@ -38,6 +41,7 @@ class World:
         rotated_room_grid = []
         for i in range(0, len(self.room_grid)):
             rotated_room_grid.append([None] * len(self.room_grid))
+            
         for i in range(len(self.room_grid)):
             for j in range(len(self.room_grid[0])):
                 rotated_room_grid[len(self.room_grid[0]) - j - 1][i] = self.room_grid[i][j]
